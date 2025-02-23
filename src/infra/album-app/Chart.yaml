@@ -1,0 +1,5 @@
+apiVersion: v2
+name: album-app
+description: A Helm chart of sample web server app with redis
+version: 1.0.0
+appVersion: "1.0"

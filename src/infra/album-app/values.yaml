@@ -1,0 +1,20 @@
+redis:
+  image:
+    repository: web_server/redis
+    tag: 7.2
+  password: redis_server_pass
+  host: redis-server
+  port: 6379
+
+webserver:
+  serviceName: webserver
+  servicePort: 80
+  image:
+    repository: web_server/server
+    tag: 1.1
+  replicas: 2
+  containerPort: 9090
+
+ingress:
+  tlsSecretName: nginx-tls
+  host: web-server

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver
+spec:
+  replicas: {{ .Values.webserver.replicas }}
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+        - name: webserver
+          image: "{{ .Values.webserver.image.repository }}:{{ .Values.webserver.image.tag }}"
+          command:
+            - "/app/server"
+            - "{{ .Values.redis.host}}:{{ .Values.redis.port}}"
+          env:
+            - name: PASSWORD
+              value: "{{ .Values.redis.password }}"
+          ports:
+            - containerPort: {{ .Values.webserver.containerPort}}
